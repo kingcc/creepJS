@@ -1,0 +1,22 @@
+{
+  "name": "creepjs",
+  "version": "1.0.0",
+  "description": "A simple nodeJS bookmarks creeper.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingcc/creepJS.git"
+  },
+  "keywords": [
+    "creeper"
+  ],
+  "author": "kingcc <laikinfox@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kingcc/creepJS/issues"
+  },
+  "homepage": "https://github.com/kingcc/creepJS#readme"
+}
