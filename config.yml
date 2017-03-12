@@ -1,0 +1,28 @@
+# Input your full Bookmarks path
+path: 
+  /home/kin/.config/chromium/Default/Bookmarks
+
+# Check times (Default 30 min)
+times:
+  30*60
+
+defaultCreeperObject:
+
+
+# Creeper Config
+creeperMarks:
+  - name: 域名优惠码
+  - name: HTML5应用
+  - name: 懒人图库
+  - name: 老左
+  - name: 福利
+  - name: 月光
+  - name: 少数
+  - name: 主机小
+  - name: 91云
+  - name: 小众
+  - name: Hacker News
+  - name: 阮一峰
+    tags: h1
+  - name: 廖雪峰
+  - name: 张鑫旭
