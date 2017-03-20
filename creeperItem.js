@@ -1,8 +1,9 @@
 class creeperItem {
-  constructor({ name = '', url = '', tags = 'h1' }) {
+  constructor({ name = '', url = '', filter = '', construct = '' }, defaultCreeperObjectConstruct) {
     this.name = name,
       this.url = url,
-      this.tags = tags;
+      this.filter = filter,
+      this.construct = Object.assign({}, defaultCreeperObjectConstruct, construct);
   }
 }
 

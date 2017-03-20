@@ -2,27 +2,168 @@
 path: 
   /home/kin/.config/chromium/Default/Bookmarks
 
-# Check times (Default 30 min)
+# Check times (Default 30 mins)
 times:
   30*60
 
-defaultCreeperObject:
-
+defaultCreeperObjectConstruct:
+  listItem: article
+  data:
+    title: a
+    date:
+      selector:
+      convert: x => new Date(x.slice(0, 10))
+    link:
+      selector: a
+      attr: href
 
 # Creeper Config
 creeperMarks:
-  - name: 域名优惠码
+  - name: 域名之音
+    construct: 
+      listItem: '#main .post'
+      data:
+        title: h2
+        date:
+          selector: .date
+          convert: x => new Date(x.slice(0, 10).replace(/[年月日]/g,'.'))
+        link:
+          selector: a
+          attr: href
   - name: HTML5应用
-  - name: 懒人图库
-  - name: 老左
+    construct: 
+      listItem: '#primary article'
+      data:
+        title: h1
+        date:
+          selector: time
+          attr: datetime
+          convert: x => new Date(x)
+        link:
+          selector: h1 a
+          attr: href
+  # - name: 懒人图库
+  #   construct: 
+  #     listItem: '.m dd'
+  #     data:
+  #       title: a
+  #       date:
+  #         selector: span
+  #         convert: x => new Date(`${new Date().getFullYear()}-${x}`)
+  #       link:
+  #         selector: a
+  #         attr: href
+  #         convert: x => `www.lanrentuku.com${x}`
+  # - name: 老左
+  #   construct: 
+  #     listItem: 'ul.post:not(.post-topad)'
+  #     data:
+  #       title: h2 a
+  #       date:
+  #         selector: .info
+  #         convert: x => new Date(x.slice(3, 10).replace(/[年月日]/g,'.'))
+  #       link:
+  #         selector: h2 a
+  #         attr: href
   - name: 福利
+    construct: 
+      listItem: '#content article'
+      data:
+        title: h2 a
+        date:
+          selector: .entry-meta
+          convert: x => new Date(x.trim().slice(6,10),parseInt(x.trim().slice(3,5))-1,x.trim().slice(0,2))
+        link:
+          selector: h2 a
+          attr: href
   - name: 月光
-  - name: 少数
+    construct: 
+      listItem: '#divMain .post'
+      data:
+        title: h2 a
+        date:
+          selector: h4
+          convert: x => new Date(x.replace(/[年月日]/g,'.'))
+        link:
+          selector: h2 a
+          attr: href
+  # - name: 少数
+  #   construct: 
+  #     listItem: '.main .article-card'
+  #     data:
+  #       title: h3 a
+  #       date:
+  #         selector: time
+  #         convert: x => (x.length <= 7 ? new Date(`2017.${x.replace(/[年月日]/g,'.')}`):new Date(x.replace(/[年月日]/g,'.')))
+  #       link:
+  #         selector: h3 a
+  #         attr: href
   - name: 主机小
+    construct: 
+      listItem: '.boxcont article'
+      data:
+        title: h3 a
+        date:
+          selector: time
+          attr: datetime
+          convert: x => new Date(x)
+        link:
+          selector: h3 a
+          attr: href
   - name: 91云
-  - name: 小众
+    construct: 
+      listItem: 'article.excerpt'
+      data:
+        title: h2 a
+        date:
+          selector: time
+          convert: x => new Date(x)
+        link:
+          selector: h2 a
+          attr: href
   - name: Hacker News
-  - name: 阮一峰
-    tags: h1
+    construct: 
+      listItem: '.itemlist tr.athing'
+      data:
+        title: a
+        date:
+          selector: time
+          convert: x => new Date(new Date().setHours(7,0,0))
+        link:
+          selector: a.storylink
+          attr: href
+  - name: 阮一峰的网络日志
+    construct: 
+      listItem: '#alpha .module-list-item'
+      data:
+        title: a
+        date:
+          selector:
+          convert: x => new Date(x.slice(0, 10))
+        link:
+          selector: a
+          attr: href
   - name: 廖雪峰
-  - name: 张鑫旭
+    construct: 
+      listItem: '.x-content .uk-article'
+      data:
+        title: h3 a
+        date:
+          selector: span.x-smartdate
+          attr: date
+          convert: x => new Date(parseInt(x))
+        link:
+          selector: h3 a
+          attr: href
+          convert: x => `www.liaoxuefeng.com${x}`
+  - name: 张鑫旭空间
+    construct: 
+      listItem: '.the_main div.post'
+      data:
+        title: h2 a
+        date:
+          selector: .updated
+          convert: x => new Date(x.replace(/[年月日]/g,'.'))
+        link:
+          selector: h2 a
+          attr: href
