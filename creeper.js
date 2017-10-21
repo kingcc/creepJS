@@ -34,16 +34,40 @@ function constructObject(creeperMarks, bookMarks, defaultCreeperObjectConstruct)
     })(bookMarks.children[i]).name);
   }
 
-  for (let [i, n] of new Map(creeperObjectArray.map((n, i) => [i, n]))) {
-    for (let [ii, nn] of new Map(nameList.map((n, i) => [i, n]))) {
-      for (let [iii, nnn] of new Map(nn.map((n, i) => [i, n]))) {
-        if (nnn.search(n.name) !== -1) {
-          creeperObjectArray[i].url = bookMarks.children[ii].children[iii].url;
-        }
+  function mapping(a) {
+    let arr = []
+    let isNext = function(arg) {
+      return typeof arg === 'object'
+    }
+    for (let i in a) {
+      if (isNext(a[i])) {
+        arr.push(a[i])
+        arr.push(...mapping(a[i]))
+      }
+    }
+    return arr
+  }
+
+  // for (let [i, n] of new Map(creeperObjectArray.map((n, i) => [i, n]))) {
+  //   for (let [ii, nn] of new Map(nameList.map((n, i) => [i, n]))) {
+  //     for (let [iii, nnn] of new Map(nn.map((n, i) => [i, n]))) {
+  //       if (nnn.search(n.name) !== -1) {
+  //         creeperObjectArray[i].url = bookMarks.children[ii].children[iii].url;
+  //       }
+  //     }
+  //   }
+  // }
+
+
+  let bookArray = mapping(bookMarks)
+  for (let i of creeperObjectArray) {
+    for (let j of bookArray) {
+      j.name = j.name || ''
+      if (j.name.indexOf(i.name) !== -1) {
+        i.url = j.url
       }
     }
   }
-
   return creeperObjectArray;
 }
 
